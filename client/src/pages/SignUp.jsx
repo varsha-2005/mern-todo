@@ -11,7 +11,7 @@ function SignUp() {
   const navigate = useNavigate();
 
   
-  API_URL = "https://todo-server-lyart-eight.vercel.app";
+  API_URL = "http://localhost:5001";
 
   const handleSignUp = async (e) => {
     e.preventDefault();

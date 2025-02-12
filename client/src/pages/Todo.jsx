@@ -8,7 +8,7 @@ const Todo = () => {
     const [editedTodo, setEditedTodo] = useState("");
     const [editTodoId, setEditTodoId] = useState(null);
 
-    API_URL = "https://todo-server-lyart-eight.vercel.app";
+    API_URL = "http://localhost:5001";
 
     const navigate = useNavigate();
     const [token, setToken] = useState(localStorage.getItem("token"));
@@ -39,7 +39,7 @@ const Todo = () => {
         if (newTodo) {
             try {
                 const response = await axios.post(
-                    "http://localhost:5001/api/todos",
+                    `${API_URL}/api/todos`,
                     { title: newTodo },
                     {
                         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -57,7 +57,7 @@ const Todo = () => {
         if (editedTodo) {
             try {
                 const response = await axios.put(
-                    `http://localhost:5001/api/todos/${id}`,
+                    `${API_URL}/api/todos/${id}`,
                     { title: editedTodo },
                     {
                         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
