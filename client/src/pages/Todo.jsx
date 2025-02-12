@@ -8,10 +8,10 @@ const Todo = () => {
     const [editedTodo, setEditedTodo] = useState("");
     const [editTodoId, setEditTodoId] = useState(null);
 
+    API_URL = "https://todo-server-lyart-eight.vercel.app";
+
     const navigate = useNavigate();
     const [token, setToken] = useState(localStorage.getItem("token"));
-    const API_URL = import.meta.env.VITE_SERVER_APP_URL;
-
 
     useEffect(() => {
         if (token !== "") {

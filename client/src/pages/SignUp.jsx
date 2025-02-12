@@ -9,8 +9,9 @@ function SignUp() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_SERVER_APP_URL;
 
+  
+  API_URL = "https://todo-server-lyart-eight.vercel.app";
 
   const handleSignUp = async (e) => {
     e.preventDefault();
