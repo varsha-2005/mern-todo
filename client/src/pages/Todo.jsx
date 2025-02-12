@@ -8,7 +8,7 @@ const Todo = () => {
     const [editedTodo, setEditedTodo] = useState("");
     const [editTodoId, setEditTodoId] = useState(null);
 
-    const API_URL = "http://localhost:5001";
+    const API_URL = "https://todo-server-blond.vercel.app/";
 
     const navigate = useNavigate();
     const [token, setToken] = useState(localStorage.getItem("token"));

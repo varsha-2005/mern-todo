@@ -9,7 +9,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const API_URL = "http://localhost:5001";
+  const API_URL = "https://todo-server-blond.vercel.app/";
 
   const handleLogin = async (e) => {
     e.preventDefault();
