@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const TodoSchema = new mongoose.Schema({
-  text: { String, required: true },
-
+  title: { type:String, required: true },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
