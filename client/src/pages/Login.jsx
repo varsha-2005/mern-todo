@@ -9,7 +9,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  API_URL = "http://localhost:5001";
+  const API_URL = "http://localhost:5001";
 
   const handleLogin = async (e) => {
     e.preventDefault();
