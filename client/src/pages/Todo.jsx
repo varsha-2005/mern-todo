@@ -10,6 +10,8 @@ const Todo = () => {
 
     const navigate = useNavigate();
     const [token, setToken] = useState(localStorage.getItem("token"));
+    const API_URL = import.meta.env.VITE_SERVER_APP_URL;
+
 
     useEffect(() => {
         if (token !== "") {
@@ -24,7 +26,7 @@ const Todo = () => {
 
     const getTodos = async () => {
         try {
-            const response = await axios.get("http://localhost:5001/api/todos", {
+            const response = await axios.get(`${API_URL}/api/todos`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
             setTodos(response.data);
