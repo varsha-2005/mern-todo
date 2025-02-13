@@ -17,10 +17,17 @@ function Login() {
     setMessage("");
 
     try {
-      const response = await axios.post(`${API_URL}/api/auth/login`, {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${API_URL}/api/auth/login`,
+        {
+          email,
+          password,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, // Ensures cookies and auth headers work
+        }
+      );
 
       const { token, message } = response.data;
       setMessage(message);
@@ -42,7 +49,9 @@ function Login() {
         {message && (
           <div
             className={`text-sm p-2 rounded-md mb-4 ${
-              message.includes("success") ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+              message.includes("success")
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-700"
             }`}
           >
             {message}
@@ -77,7 +86,13 @@ function Login() {
         </form>
 
         <p className="mt-4 text-gray-600">
-          Don't have an account? <a href="/signup" className="text-blue-500 font-semibold hover:underline">Sign Up</a>
+          Don't have an account?{" "}
+          <a
+            href="/signup"
+            className="text-blue-500 font-semibold hover:underline"
+          >
+            Sign Up
+          </a>
         </p>
       </div>
     </div>

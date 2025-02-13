@@ -10,7 +10,6 @@ function SignUp() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  
   const API_URL = "https://todo-server-blond.vercel.app";
 
   const handleSignUp = async (e) => {
@@ -19,11 +18,18 @@ function SignUp() {
     setMessage("");
 
     try {
-      const response = await axios.post(`${API_URL}/api/auth/register`, {
-        name,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${API_URL}/api/auth/register`,
+        {
+          name,
+          email,
+          password,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, // Ensures cookies and auth headers work
+        }
+      );
 
       const { token, message } = response.data;
       setMessage(message);
@@ -45,12 +51,16 @@ function SignUp() {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">Create an Account</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-4">
+          Create an Account
+        </h1>
 
         {message && (
           <div
             className={`text-sm p-2 rounded-md mb-4 ${
-              message.includes("success") ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+              message.includes("success")
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-700"
             }`}
           >
             {message}
@@ -94,7 +104,10 @@ function SignUp() {
 
         <p className="mt-4 text-gray-600">
           Already have an account?{" "}
-          <a href="/login" className="text-purple-500 font-semibold hover:underline">
+          <a
+            href="/login"
+            className="text-purple-500 font-semibold hover:underline"
+          >
             Log in
           </a>
         </p>
