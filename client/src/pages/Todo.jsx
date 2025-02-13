@@ -81,13 +81,10 @@ const Todo = () => {
 
   const deleteTodo = async (id) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5001/api/todos/${id}`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-          withCredentials: true,
-        }
-      );
+      const response = await axios.delete(`${API_URL}/api/todos/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        withCredentials: true,
+      });
       setTodos(response.data);
     } catch (err) {
       console.error("Error deleting todo:", err);
