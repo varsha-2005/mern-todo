@@ -1,41 +1,36 @@
-const cors = require("cors");
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config();
+const cors = require("cors");
 const todoRoute = require("./routes/todoRoute.js");
 const userRoute = require("./routes/userRoute.js");
 const connectDB = require("./config/db.js");
 
 const app = express();
 
+// Allowed frontend origins
 const allowedOrigins = [
-  "http://localhost:5173", // Development Frontend
-  "https://todo-client-gold-phi.vercel.app", // Production Frontend on Vercel
+  "http://localhost:5173", // Development
+  "https://todo-client-gold-phi.vercel.app", // Deployed frontend on Vercel
 ];
 
-// Properly configure CORS
+// CORS middleware
 app.use(
   cors({
     origin: allowedOrigins,
-    credentials: true, // Allows cookies and authentication headers
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Allow cookies and tokens to be sent
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
+// Ensure preflight requests get a proper response
+app.options("*", cors());
+
 app.use(express.json());
 
-// Define Routes
 app.use("/api/todos", todoRoute);
 app.use("/api/auth", userRoute);
-
-// Error Handling Middleware
-app.use((err, req, res, next) => {
-  console.error("Error:", err.stack);
-  res
-    .status(500)
-    .json({ message: "Internal Server Error", error: err.message });
-});
 
 // Start Server
 const PORT = process.env.PORT || 5001;
