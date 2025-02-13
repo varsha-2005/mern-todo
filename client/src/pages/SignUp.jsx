@@ -18,18 +18,11 @@ function SignUp() {
     setMessage("");
 
     try {
-      const response = await axios.post(
-        `${API_URL}/api/auth/register`,
-        {
-          name,
-          email,
-          password,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true, // Ensures cookies and auth headers work
-        }
-      );
+      const response = await axios.post(`${API_URL}/api/auth/register`, {
+        name,
+        email,
+        password,
+      });
 
       const { token, message } = response.data;
       setMessage(message);

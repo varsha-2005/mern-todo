@@ -28,7 +28,6 @@ const Todo = () => {
     try {
       const response = await axios.get(`${API_URL}/api/todos`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        withCredentials: true,
       });
       setTodos(response.data);
     } catch (err) {
@@ -46,7 +45,6 @@ const Todo = () => {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-            withCredentials: true,
           }
         );
         getTodos();
@@ -67,7 +65,6 @@ const Todo = () => {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-            withCredentials: true,
           }
         );
         setTodos(response.data);
@@ -81,9 +78,8 @@ const Todo = () => {
 
   const deleteTodo = async (id) => {
     try {
-      const response = await axios.delete(`${API_URL}/api/todos/${id}`, {
+      const response = await axios.delete(`${API_URL}/api//todos/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        withCredentials: true,
       });
       setTodos(response.data);
     } catch (err) {

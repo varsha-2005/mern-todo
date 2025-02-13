@@ -17,17 +17,10 @@ function Login() {
     setMessage("");
 
     try {
-      const response = await axios.post(
-        `${API_URL}/api/auth/login`,
-        {
-          email,
-          password,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true, // Ensures cookies and auth headers work
-        }
-      );
+      const response = await axios.post(`${API_URL}/api/auth/login`, {
+        email,
+        password,
+      });
 
       const { token, message } = response.data;
       setMessage(message);
