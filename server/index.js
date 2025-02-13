@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
+
 const todoRoute = require("./routes/todoRoute.js");
 const userRoute = require("./routes/userRoute.js");
 const connectDB = require("./config/db.js");
@@ -15,13 +15,14 @@ const allowedOrigins = [
 ];
 
 // CORS Middleware
-app.use(
-  cors({
-    origin: allowedOrigins,
-
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
+// app.use(
+//   cors({
+//     origin: allowedOrigins,
+//     credentials: true, // Allow cookies & auth headers
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
 
 app.use(express.json());
 
